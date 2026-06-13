@@ -30,6 +30,8 @@ Built with **n8n · Groq LLaMA 3 · Supabase · Gmail** to simulate a real-world
 
 ## 🔄 Workflow Architecture
 
+![workflow Diagram](workflow.png)
+
 1. **Webhook** — receives incoming lead data  
 2. **Groq AI** — evaluates and scores lead intent  
 3. **Code Node** — parses and formats AI response  
