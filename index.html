@@ -35,497 +35,123 @@
     --mono: 'JetBrains Mono', monospace;
   }
 
-  body {
-    font-family: var(--font);
-    background: var(--white);
-    color: var(--black);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { font-family: var(--font); background: var(--white); color: var(--black); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-  /* NAV */
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--gray-200);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 56px;
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px;
   }
-  .nav-logo {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--black);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-  }
-  .nav-logo-dot {
-    width: 8px; height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-  }
+  .nav-logo { font-size: 14px; font-weight: 600; color: var(--black); display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .nav-logo-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
-  .nav-links {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 13px;
-    color: var(--gray-600);
-    text-decoration: none;
-    transition: color .15s;
-  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--gray-600); text-decoration: none; transition: color .15s; }
   .nav-links a:hover { color: var(--black); }
 
-  /* HERO */
-  .hero {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 80px 2rem 64px;
-  }
+  .hero { max-width: 880px; margin: 0 auto; padding: 80px 2rem 64px; }
   .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    background: var(--accent-light);
-    border: 1px solid #bbf7d0;
-    border-radius: 99px;
-    padding: 4px 12px;
-    margin-bottom: 24px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .08em;
+    background: var(--accent-light); border: 1px solid #bbf7d0; border-radius: 99px; padding: 4px 12px; margin-bottom: 24px;
   }
-  .hero h1 {
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 600;
-    line-height: 1.12;
-    letter-spacing: -.02em;
-    color: var(--black);
-    margin-bottom: 20px;
-    max-width: 640px;
-  }
+  .hero h1 { font-size: clamp(32px,5vw,52px); font-weight: 600; line-height: 1.12; letter-spacing: -.02em; color: var(--black); margin-bottom: 20px; max-width: 640px; }
   .hero h1 span { color: var(--accent); }
-  .hero-sub {
-    font-size: 16px;
-    color: var(--gray-600);
-    max-width: 520px;
-    margin-bottom: 36px;
-    line-height: 1.7;
-  }
-  .hero-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 40px;
-  }
-  .stack-tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 99px;
-    border: 1px solid var(--gray-200);
-    color: var(--gray-600);
-    background: var(--gray-50);
-  }
-  .hero-stats {
-    display: flex;
-    gap: 32px;
-    padding-top: 32px;
-    border-top: 1px solid var(--gray-200);
-  }
-  .stat-n {
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--black);
-    line-height: 1;
-  }
+  .hero-sub { font-size: 16px; color: var(--gray-600); max-width: 520px; margin-bottom: 36px; line-height: 1.7; }
+  .hero-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .stack-tag { font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 99px; border: 1px solid var(--gray-200); color: var(--gray-600); background: var(--gray-50); }
+  .hero-stats { display: flex; gap: 32px; padding-top: 32px; border-top: 1px solid var(--gray-200); flex-wrap: wrap; }
+  .stat-n { font-size: 28px; font-weight: 600; color: var(--black); line-height: 1; }
   .stat-l { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
 
-  /* PIPELINE */
-  .pipeline-section {
-    background: var(--gray-50);
-    border-top: 1px solid var(--gray-200);
-    border-bottom: 1px solid var(--gray-200);
-    padding: 48px 2rem;
-  }
-  .section-label {
-    max-width: 880px;
-    margin: 0 auto 28px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: var(--gray-400);
-  }
-  .pipeline {
-    max-width: 880px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 0;
-    overflow-x: auto;
-    padding-bottom: 4px;
-  }
-  .pipe-step {
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 16px 20px;
-    min-width: 140px;
-    flex-shrink: 0;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .pipe-step.active {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(22,163,74,.1);
-  }
-  .pipe-step-num {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--gray-400);
-    margin-bottom: 6px;
-  }
-  .pipe-step-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--black);
-    margin-bottom: 2px;
-  }
+  .pipeline-section { background: var(--gray-50); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 48px 2rem; }
+  .section-label { max-width: 880px; margin: 0 auto 28px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-400); }
+  .pipeline { max-width: 880px; margin: 0 auto; display: flex; align-items: center; overflow-x: auto; padding-bottom: 4px; }
+  .pipe-step { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px 20px; min-width: 140px; flex-shrink: 0; transition: border-color .2s, box-shadow .2s; }
+  .pipe-step.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(22,163,74,.1); }
+  .pipe-step-num { font-family: var(--mono); font-size: 10px; color: var(--gray-400); margin-bottom: 6px; }
+  .pipe-step-name { font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 2px; }
   .pipe-step-sub { font-size: 11px; color: var(--gray-400); }
-  .pipe-arrow {
-    color: var(--gray-400);
-    padding: 0 6px;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
+  .pipe-arrow { color: var(--gray-400); padding: 0 6px; font-size: 18px; flex-shrink: 0; }
 
-  /* DEMO SECTION */
-  .demo-section {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 64px 2rem;
-  }
-  .demo-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-  }
-  .demo-header h2 {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--black);
-    margin-bottom: 6px;
-  }
+  .demo-section { max-width: 880px; margin: 0 auto; padding: 64px 2rem; }
+  .demo-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+  .demo-header h2 { font-size: 22px; font-weight: 600; color: var(--black); margin-bottom: 6px; }
   .demo-header p { font-size: 14px; color: var(--gray-600); }
-  .live-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--accent);
-    background: var(--accent-light);
-    border: 1px solid #bbf7d0;
-    border-radius: 99px;
-    padding: 5px 12px;
-    flex-shrink: 0;
-  }
-  .live-dot {
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 1.5s ease-in-out infinite;
-  }
+  .live-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-light); border: 1px solid #bbf7d0; border-radius: 99px; padding: 5px 12px; flex-shrink: 0; }
+  .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s ease-in-out infinite; }
 
-  .demo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
+  .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   @media (max-width: 640px) { .demo-grid { grid-template-columns: 1fr; } }
 
-  .demo-card {
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 24px;
-  }
-  .demo-card-title {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    color: var(--gray-400);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  .demo-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; }
+  .demo-card-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-400); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
   .demo-card-title svg { width: 14px; height: 14px; }
 
-  label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--gray-600);
-    margin-bottom: 5px;
+  label { display: block; font-size: 12px; font-weight: 500; color: var(--gray-600); margin-bottom: 5px; }
+  input, textarea, select {
+    width: 100%; padding: 9px 12px; font-family: var(--font); font-size: 14px; color: var(--black);
+    background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+    outline: none; transition: border-color .15s, box-shadow .15s; margin-bottom: 14px;
   }
-  input, textarea {
-    width: 100%;
-    padding: 9px 12px;
-    font-family: var(--font);
-    font-size: 14px;
-    color: var(--black);
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    outline: none;
-    transition: border-color .15s, box-shadow .15s;
-    margin-bottom: 14px;
-  }
-  input:focus, textarea:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(22,163,74,.1);
-    background: var(--white);
-  }
-  textarea { height: 90px; resize: none; }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(22,163,74,.1); background: var(--white); }
+  textarea { height: 80px; resize: none; }
+  select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; cursor: pointer; }
 
-  /* Phone input with +91 prefix */
-  .phone-wrapper {
-    display: flex;
-    align-items: stretch;
-    margin-bottom: 14px;
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    background: var(--gray-50);
-    transition: border-color .15s, box-shadow .15s;
-  }
-  .phone-wrapper:focus-within {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(22,163,74,.1);
-    background: var(--white);
-  }
-  .phone-prefix {
-    display: flex;
-    align-items: center;
-    padding: 9px 10px 9px 12px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gray-600);
-    background: var(--gray-100);
-    border-right: 1px solid var(--gray-200);
-    white-space: nowrap;
-    user-select: none;
-    flex-shrink: 0;
-  }
-  .phone-wrapper input {
-    border: none;
-    border-radius: 0;
-    margin-bottom: 0;
-    background: transparent;
-    flex: 1;
-    box-shadow: none !important;
-  }
-  .phone-wrapper input:focus {
-    border: none;
-    box-shadow: none;
-    background: transparent;
-  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-  .submit-btn {
-    width: 100%;
-    padding: 11px;
-    background: var(--black);
-    color: var(--white);
-    border: none;
-    border-radius: var(--radius-sm);
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: opacity .15s, transform .1s;
-  }
+  .phone-wrapper { display: flex; align-items: stretch; margin-bottom: 14px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); overflow: hidden; background: var(--gray-50); transition: border-color .15s, box-shadow .15s; }
+  .phone-wrapper:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(22,163,74,.1); background: var(--white); }
+  .phone-prefix { display: flex; align-items: center; padding: 9px 10px 9px 12px; font-size: 14px; font-weight: 500; color: var(--gray-600); background: var(--gray-100); border-right: 1px solid var(--gray-200); white-space: nowrap; user-select: none; flex-shrink: 0; }
+  .phone-wrapper input { border: none; border-radius: 0; margin-bottom: 0; background: transparent; flex: 1; box-shadow: none !important; }
+  .phone-wrapper input:focus { border: none; box-shadow: none; background: transparent; }
+
+  .submit-btn { width: 100%; padding: 11px; background: var(--black); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity .15s, transform .1s; }
   .submit-btn:hover { opacity: .85; }
   .submit-btn:active { transform: scale(.99); }
   .submit-btn:disabled { opacity: .4; cursor: not-allowed; }
 
   .err { font-size: 12px; color: var(--hot); margin-top: 6px; display: none; }
 
-  /* RESULT */
-  .result-box {
-    display: none;
-    margin-top: 20px;
-    border-radius: var(--radius);
-    border: 1px solid var(--gray-200);
-    overflow: hidden;
-  }
-  .result-top {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 20px;
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .score-num {
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 1;
-    font-family: var(--mono);
-  }
+  .result-box { display: none; margin-top: 20px; border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; }
+  .result-top { display: flex; align-items: center; gap: 16px; padding: 20px; border-bottom: 1px solid var(--gray-200); }
+  .score-num { font-size: 48px; font-weight: 600; line-height: 1; font-family: var(--mono); }
   .score-right { flex: 1; }
-  .tier-pill {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 99px;
-    margin-bottom: 8px;
-  }
-  .bar-track {
-    height: 4px;
-    background: var(--gray-100);
-    border-radius: 99px;
-    overflow: hidden;
-  }
-  .bar-fill {
-    height: 100%;
-    border-radius: 99px;
-    transition: width .7s ease;
-  }
+  .tier-pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; margin-bottom: 8px; }
+  .bar-track { height: 4px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; transition: width .7s ease; }
   .result-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
-  .result-row-label {
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: var(--gray-400);
-    margin-bottom: 4px;
-  }
+  .result-row-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-400); margin-bottom: 4px; }
   .result-row-text { font-size: 13px; color: var(--gray-800); line-height: 1.55; }
-  .result-chips {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 0 20px 20px;
-  }
-  .chip {
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px 12px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--gray-200);
-    color: var(--gray-600);
-    background: var(--white);
-    cursor: pointer;
-    transition: background .15s, color .15s;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
+  .result-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 20px; }
+  .chip { font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--gray-200); color: var(--gray-600); background: var(--white); cursor: pointer; transition: background .15s, color .15s; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
   .chip:hover { background: var(--gray-50); color: var(--black); border-color: var(--gray-400); }
 
-  /* CRM LOG */
   .crm-log { display: flex; flex-direction: column; gap: 8px; min-height: 200px; }
-  .crm-empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 48px 0;
-    color: var(--gray-400);
-    text-align: center;
-    gap: 10px;
-    font-size: 13px;
-  }
+  .crm-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 0; color: var(--gray-400); text-align: center; gap: 10px; font-size: 13px; }
   .crm-empty svg { opacity: .3; }
-  .crm-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: var(--radius-sm);
-    background: var(--gray-50);
-    border: 1px solid var(--gray-100);
-  }
-  .crm-avatar {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
+  .crm-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--gray-50); border: 1px solid var(--gray-100); }
+  .crm-avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; }
   .crm-info { flex: 1; min-width: 0; }
   .crm-name { font-size: 13px; font-weight: 500; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .crm-email { font-size: 11px; color: var(--gray-400); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .crm-meta { font-size: 11px; color: var(--gray-400); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .crm-score { font-family: var(--mono); font-size: 13px; font-weight: 500; }
   .crm-tier { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; }
 
-  /* TECH SECTION */
-  .tech-section {
-    background: var(--gray-50);
-    border-top: 1px solid var(--gray-200);
-    padding: 64px 2rem;
-  }
+  .tech-section { background: var(--gray-50); border-top: 1px solid var(--gray-200); padding: 64px 2rem; }
   .tech-inner { max-width: 880px; margin: 0 auto; }
   .tech-inner h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
-  .tech-inner p { font-size: 14px; color: var(--gray-600); margin-bottom: 36px; }
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
-    margin-bottom: 36px;
-  }
-  .tech-card {
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 20px;
-    transition: border-color .15s;
-  }
+  .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 36px; }
+  .tech-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; transition: border-color .15s; }
   .tech-card:hover { border-color: var(--gray-400); }
   .tech-icon { font-size: 22px; margin-bottom: 10px; }
   .tech-name { font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
   .tech-role { font-size: 12px; color: var(--gray-400); line-height: 1.4; }
 
-  /* CLASSIFICATION */
-  .tiers-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 48px;
-  }
+  .tiers-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 48px; }
   @media (max-width: 480px) { .tiers-row { grid-template-columns: 1fr; } }
-  .tier-card {
-    border-radius: var(--radius);
-    border: 1px solid;
-    padding: 20px;
-    text-align: center;
-  }
+  .tier-card { border-radius: var(--radius); border: 1px solid; padding: 20px; text-align: center; }
   .tier-card.hot { background: var(--hot-bg); border-color: var(--hot-border); }
   .tier-card.warm { background: var(--warm-bg); border-color: var(--warm-border); }
   .tier-card.cold { background: var(--cold-bg); border-color: var(--cold-border); }
@@ -539,44 +165,31 @@
   .tier-card.cold .tier-range { color: var(--cold); }
   .tier-action { font-size: 12px; color: var(--gray-600); line-height: 1.4; }
 
-  /* DB FIELDS */
   .db-fields { display: flex; flex-wrap: wrap; gap: 8px; }
-  .db-field {
-    font-family: var(--mono);
-    font-size: 12px;
-    padding: 4px 10px;
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    color: var(--gray-600);
-  }
+  .db-field { font-family: var(--mono); font-size: 12px; padding: 4px 10px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); color: var(--gray-600); }
   .db-field.ai { background: var(--accent-light); border-color: #bbf7d0; color: #15803d; }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--gray-200);
-    padding: 32px 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    max-width: 880px;
-    margin: 0 auto;
-  }
+  /* Future section */
+  .future-section { max-width: 880px; margin: 0 auto; padding: 64px 2rem; }
+  .future-section h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .future-section > p { font-size: 14px; color: var(--gray-600); margin-bottom: 32px; }
+  .future-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .future-card { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; }
+  .future-icon { font-size: 20px; margin-bottom: 10px; }
+  .future-name { font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+  .future-desc { font-size: 12px; color: var(--gray-400); line-height: 1.4; }
+  .future-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--gray-100); color: var(--gray-400); margin-top: 8px; }
+
+  footer { border-top: 1px solid var(--gray-200); padding: 32px 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; max-width: 880px; margin: 0 auto; }
   footer p { font-size: 12px; color: var(--gray-400); }
   .footer-links { display: flex; gap: 16px; }
   .footer-links a { font-size: 12px; color: var(--gray-400); text-decoration: none; }
   .footer-links a:hover { color: var(--black); }
 
-  /* SPIN */
   .spin { display: inline-block; animation: spin .6s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  @media (max-width: 640px) {
-    .hero-stats { gap: 20px; }
-    .nav-links { display: none; }
-  }
+  @media (max-width: 640px) { .hero-stats { gap: 20px; } .nav-links { display: none; } .form-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -590,6 +203,7 @@
     <li><a href="#demo">Live demo</a></li>
     <li><a href="#tech">Tech stack</a></li>
     <li><a href="#schema">Schema</a></li>
+    <li><a href="#future">Roadmap</a></li>
     <li><a href="https://github.com" target="_blank">GitHub ↗</a></li>
   </ul>
 </nav>
@@ -623,6 +237,10 @@
     <div class="stat-item">
       <div class="stat-n">0–100</div>
       <div class="stat-l">AI score range</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">8</div>
+      <div class="stat-l">DB fields stored</div>
     </div>
   </div>
 </section>
@@ -681,20 +299,71 @@
         Submit lead
       </div>
 
-      <label for="f-name">Full name</label>
-      <input id="f-name" type="text" placeholder="Jane Smith">
-
-      <label for="f-email">Email address</label>
-      <input id="f-email" type="email" placeholder="jane@acme.com">
-
-      <label for="f-phone">Phone number</label>
-      <div class="phone-wrapper">
-        <span class="phone-prefix">🇮🇳 +91</span>
-        <input id="f-phone" type="tel" placeholder="98765 43210">
+      <div class="form-row">
+        <div>
+          <label for="f-name">Full name</label>
+          <input id="f-name" type="text" placeholder="Jane Smith">
+        </div>
+        <div>
+          <label for="f-email">Work email</label>
+          <input id="f-email" type="email" placeholder="jane@acme.com">
+        </div>
       </div>
 
-      <label for="f-msg">Message</label>
-      <textarea id="f-msg" placeholder="Describe what you need, your budget, timeline…"></textarea>
+      <div class="form-row">
+        <div>
+          <label for="f-company">Company</label>
+          <input id="f-company" type="text" placeholder="Acme Corp">
+        </div>
+        <div>
+          <label for="f-phone">Phone</label>
+          <div class="phone-wrapper" style="margin-bottom:14px">
+            <span class="phone-prefix">🇮🇳 +91</span>
+            <input id="f-phone" type="tel" placeholder="98765 43210">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label for="f-budget">Budget range</label>
+          <select id="f-budget">
+            <option value="">Select budget</option>
+            <option value="under_10k">Under ₹10,000</option>
+            <option value="10k_50k">₹10,000 – ₹50,000</option>
+            <option value="50k_2l">₹50,000 – ₹2,00,000</option>
+            <option value="above_2l">Above ₹2,00,000</option>
+          </select>
+        </div>
+        <div>
+          <label for="f-employees">Company size</label>
+          <select id="f-employees">
+            <option value="">Select size</option>
+            <option value="1">Solo / Freelancer</option>
+            <option value="2_10">2–10 employees</option>
+            <option value="11_50">11–50 employees</option>
+            <option value="51_200">51–200 employees</option>
+            <option value="200+">200+ employees</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="f-industry">Industry</label>
+      <select id="f-industry" style="margin-bottom:14px">
+        <option value="">Select industry</option>
+        <option value="saas">SaaS / Software</option>
+        <option value="ecommerce">E-Commerce</option>
+        <option value="fintech">Fintech</option>
+        <option value="healthcare">Healthcare</option>
+        <option value="edtech">EdTech</option>
+        <option value="realestate">Real Estate</option>
+        <option value="agency">Agency / Consulting</option>
+        <option value="manufacturing">Manufacturing</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="f-msg">Message / Requirement</label>
+      <textarea id="f-msg" placeholder="Describe what you need, your timeline, goals…"></textarea>
 
       <button class="submit-btn" id="submit-btn" onclick="submitLead()">
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -755,53 +424,21 @@
   <div class="tech-inner">
     <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:10px">Tech stack</p>
     <h2>Built with the right tools</h2>
-    <p>Every component in this pipeline is production-grade and battle-tested.</p>
+    <p style="margin-bottom:28px">Every component in this pipeline is production-grade and battle-tested.</p>
 
     <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tech-icon">⚙️</div>
-        <div class="tech-name">n8n</div>
-        <div class="tech-role">Workflow automation engine that orchestrates the entire pipeline</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🧠</div>
-        <div class="tech-name">Groq API (LLaMA 3)</div>
-        <div class="tech-role">AI lead scoring and classification with structured JSON output</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🗄️</div>
-        <div class="tech-name">Supabase</div>
-        <div class="tech-role">PostgreSQL database for persistent CRM storage</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">📧</div>
-        <div class="tech-name">Gmail API</div>
-        <div class="tech-role">Automated tier-based email notifications via OAuth2</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🔗</div>
-        <div class="tech-name">Webhook</div>
-        <div class="tech-role">HTTP trigger endpoint for lead data ingestion</div>
-      </div>
+      <div class="tech-card"><div class="tech-icon">⚙️</div><div class="tech-name">n8n</div><div class="tech-role">Workflow automation engine orchestrating the entire pipeline</div></div>
+      <div class="tech-card"><div class="tech-icon">🧠</div><div class="tech-name">Groq (LLaMA 3)</div><div class="tech-role">AI lead scoring and classification with structured JSON output</div></div>
+      <div class="tech-card"><div class="tech-icon">🗄️</div><div class="tech-name">Supabase</div><div class="tech-role">PostgreSQL database for persistent CRM storage</div></div>
+      <div class="tech-card"><div class="tech-icon">📧</div><div class="tech-name">Gmail API</div><div class="tech-role">Automated tier-based email notifications via OAuth2</div></div>
+      <div class="tech-card"><div class="tech-icon">🔗</div><div class="tech-name">Webhook</div><div class="tech-role">HTTP trigger endpoint for lead data ingestion</div></div>
     </div>
 
     <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:16px">AI classification logic</p>
     <div class="tiers-row">
-      <div class="tier-card hot">
-        <div class="tier-label">🔥 Hot</div>
-        <span class="tier-range">70–100</span>
-        <div class="tier-action">Immediate follow-up email</div>
-      </div>
-      <div class="tier-card warm">
-        <div class="tier-label">🌤 Warm</div>
-        <span class="tier-range">40–69</span>
-        <div class="tier-action">Standard response email</div>
-      </div>
-      <div class="tier-card cold">
-        <div class="tier-label">❄️ Cold</div>
-        <span class="tier-range">0–39</span>
-        <div class="tier-action">Generic informational email</div>
-      </div>
+      <div class="tier-card hot"><div class="tier-label">🔥 Hot</div><span class="tier-range">70–100</span><div class="tier-action">Immediate follow-up email</div></div>
+      <div class="tier-card warm"><div class="tier-label">🌤 Warm</div><span class="tier-range">40–69</span><div class="tier-action">Standard response email</div></div>
+      <div class="tier-card cold"><div class="tier-label">❄️ Cold</div><span class="tier-range">0–39</span><div class="tier-action">Generic informational email</div></div>
     </div>
 
     <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:12px" id="schema">Database schema (Supabase)</p>
@@ -809,6 +446,10 @@
       <span class="db-field">name</span>
       <span class="db-field">email</span>
       <span class="db-field">phone</span>
+      <span class="db-field">company</span>
+      <span class="db-field">budget</span>
+      <span class="db-field">employees</span>
+      <span class="db-field">industry</span>
       <span class="db-field">message</span>
       <span class="db-field ai">ai_score</span>
       <span class="db-field ai">tier</span>
@@ -819,11 +460,26 @@
   </div>
 </section>
 
+<!-- FUTURE / ROADMAP -->
+<section class="future-section" id="future">
+  <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:10px">Roadmap</p>
+  <h2>Future improvements</h2>
+  <p>Planned features to evolve this into a full production SaaS platform.</p>
+  <div class="future-grid">
+    <div class="future-card"><div class="future-icon">🔑</div><div class="future-name">Multi-user SaaS</div><div class="future-desc">API key-based access with team workspaces and role management</div><div class="future-badge">Planned</div></div>
+    <div class="future-card"><div class="future-icon">🔀</div><div class="future-name">Routing rules engine</div><div class="future-desc">Custom logic to auto-assign leads to reps based on region, tier, or industry</div><div class="future-badge">Planned</div></div>
+    <div class="future-card"><div class="future-icon">💬</div><div class="future-name">Slack / WhatsApp alerts</div><div class="future-desc">Instant hot-lead notifications pushed to Slack channels or WhatsApp</div><div class="future-badge">Planned</div></div>
+    <div class="future-card"><div class="future-icon">📊</div><div class="future-name">Analytics dashboard</div><div class="future-desc">Next.js dashboard with lead conversion funnels and tier distribution charts</div><div class="future-badge">Planned</div></div>
+    <div class="future-card"><div class="future-icon">💳</div><div class="future-name">Subscription pricing</div><div class="future-desc">Stripe-powered billing with tiered plans for different lead volumes</div><div class="future-badge">Planned</div></div>
+  </div>
+</section>
+
 <footer>
   <p>AI Lead Qualification CRM · Built as an AI Automation SaaS MVP · MIT License</p>
   <div class="footer-links">
     <a href="https://github.com" target="_blank">GitHub</a>
     <a href="#demo">Live demo</a>
+    <a href="#tech">Tech stack</a>
   </div>
 </footer>
 
@@ -837,7 +493,7 @@ function tierConfig(tier) {
 }
 
 function initials(name) {
-  return name.trim().split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase() || '?';
+  return name.trim().split(/\s+/).filter(Boolean).map(w => w[0]).slice(0,2).join('').toUpperCase() || '?';
 }
 
 function setFlow(step) {
@@ -856,29 +512,46 @@ function addToCRM(lead) {
   el.innerHTML = `
     <div class="crm-avatar" style="background:${cfg.avBg};color:${cfg.avColor}">${initials(lead.name)}</div>
     <div class="crm-info">
-      <div class="crm-name">${lead.name}</div>
-      <div class="crm-email">${lead.email}</div>
+      <div class="crm-name">${lead.name}${lead.company ? ' · ' + lead.company : ''}</div>
+      <div class="crm-meta">${lead.email}${lead.industry ? ' · ' + lead.industry : ''}</div>
     </div>
     <span class="crm-tier" style="background:${cfg.bg};color:${cfg.color};border:1px solid ${cfg.border}">${lead.tier}</span>
     <span class="crm-score" style="color:${cfg.color}">${lead.score}</span>`;
   document.getElementById('crm-log').insertBefore(el, document.getElementById('crm-log').firstChild);
 }
 
-function scoreLead(name, email, msg) {
-  const text = (name + ' ' + email + ' ' + msg).toLowerCase();
+function scoreLead(name, email, company, budget, employees, industry, msg) {
+  const text = (name + ' ' + email + ' ' + company + ' ' + msg).toLowerCase();
 
-  const hotSignals  = ['urgent', 'asap', 'immediately', 'budget', 'ready to buy', 'ready to start', 'enterprise', 'team of', 'cto', 'ceo', 'founder', 'purchase', 'contract', 'pricing', 'quote', 'invoice', 'pay', 'hire', 'onboard', 'integrate', 'scale', 'production'];
+  const hotSignals  = ['urgent', 'asap', 'immediately', 'ready to buy', 'ready to start', 'purchase', 'contract', 'pricing', 'quote', 'invoice', 'hire', 'onboard', 'integrate', 'scale', 'production', 'enterprise', 'cto', 'ceo', 'founder', 'pay'];
   const warmSignals = ['interested', 'looking for', 'need', 'want', 'would like', 'considering', 'exploring', 'evaluating', 'soon', 'next quarter', 'automate', 'crm', 'workflow', 'solution', 'project', 'team', 'business'];
   const coldSignals = ['just curious', 'learning', 'student', 'research', 'free', 'cheap', 'not sure', 'maybe', 'someday', 'personal'];
 
-  let score = 35;
+  let score = 30;
+
   hotSignals.forEach(w  => { if (text.includes(w)) score += 7; });
-  warmSignals.forEach(w => { if (text.includes(w)) score += 4; });
+  warmSignals.forEach(w => { if (text.includes(w)) score += 3; });
   coldSignals.forEach(w => { if (text.includes(w)) score -= 8; });
 
-  if (msg.length > 80)  score += 6;
-  if (msg.length > 160) score += 5;
+  // Budget scoring
+  if (budget === 'above_2l')   score += 18;
+  else if (budget === '50k_2l') score += 12;
+  else if (budget === '10k_50k') score += 6;
+  else if (budget === 'under_10k') score -= 4;
+
+  // Company size scoring
+  if (employees === '200+')      score += 14;
+  else if (employees === '51_200') score += 10;
+  else if (employees === '11_50')  score += 6;
+  else if (employees === '2_10')   score += 3;
+  else if (employees === '1')      score -= 3;
+
+  // Business email bonus
   if (!email.includes('gmail') && !email.includes('yahoo') && !email.includes('hotmail')) score += 8;
+
+  // Message length bonus
+  if (msg.length > 80)  score += 5;
+  if (msg.length > 160) score += 4;
 
   score = Math.min(97, Math.max(5, score));
   score = Math.round(score + (Math.random() * 6 - 3));
@@ -887,39 +560,42 @@ function scoreLead(name, email, msg) {
 
   const reasons = {
     Hot: [
-      `${name} shows strong buying intent with specific and detailed requirements. Their message signals urgency and readiness to move forward quickly. The use of a business email and concrete ask puts them in the top priority bracket.`,
-      `This lead demonstrates clear intent and urgency. Their message contains specific requirements that suggest they're past the research phase. Recommend immediate personal outreach within the hour.`,
-      `High-value signals detected: specific requirements, business context, and a clear ask. ${name} is likely evaluating vendors actively and a fast response is critical to winning this deal.`
+      `${name} shows strong buying intent backed by a large budget and company size. Their message signals urgency and readiness to move forward. This lead is in the top priority bracket — act fast.`,
+      `High-value signals detected: enterprise-grade company size, significant budget, and a clear ask. ${name} is actively evaluating vendors and a fast response is critical.`,
+      `This lead demonstrates clear intent and urgency. The combination of budget, team size, and message specificity puts ${name} firmly in the hot tier. Assign to a senior rep immediately.`
     ],
     Warm: [
-      `${name} is actively exploring a solution but hasn't committed to a timeline or budget yet. Their message shows genuine interest with some specifics — a nurturing sequence with a case study or demo offer would work well here.`,
-      `This lead has real interest but needs more qualification. They're in evaluation mode. A follow-up call to understand their timeline and budget would help move them to hot.`,
-      `Moderate buying signals detected. ${name} knows what they want but may still be comparing options. A timely response with a clear value proposition could accelerate their decision.`
+      `${name} is actively exploring a solution but hasn't fully committed to a timeline or budget yet. Their profile shows genuine interest — a nurturing sequence with a demo offer would work well.`,
+      `Moderate buying signals detected. ${name} knows what they want but may still be comparing options. A timely, personalised response could accelerate their decision.`,
+      `This lead has real interest but needs more qualification. A follow-up call to clarify timeline and budget would help move them into the hot tier.`
     ],
     Cold: [
-      `${name}'s message is vague with no clear budget, timeline, or specific requirement. They may be in early research mode. Add to a drip campaign and re-evaluate in 30 days.`,
-      `Low intent signals — the message lacks specifics around budget, urgency, or business context. Best handled with an automated informational email and a long-term nurture sequence.`,
-      `This lead is early in the funnel. No strong buying signals detected. Recommend a light-touch automated response and add to the cold outreach list for future follow-up.`
+      `${name}'s profile shows low buying intent — vague message, small or unspecified budget, and limited company context. Add to a drip campaign and re-evaluate in 30 days.`,
+      `Low intent signals across the board. Best handled with an automated informational email and a long-term nurture sequence.`,
+      `This lead is early in the funnel. No strong buying signals detected. Recommend a light-touch automated response and cold outreach list enrollment.`
     ]
   };
 
   const steps = {
-    Hot:  ['Schedule a discovery call within the next 2 hours — send a Calendly link in your reply.', 'Call directly and send a personalised proposal within 24 hours.', 'Assign to a senior sales rep immediately and initiate a product demo within the day.'],
-    Warm: ['Send a case study relevant to their industry and offer a 20-minute intro call.', 'Reply with a short video walkthrough and invite them to a weekly demo session.', 'Add to a 5-day email nurture sequence and check back in after the second email.'],
-    Cold: ['Add to the monthly newsletter and low-touch drip campaign.', 'Send a generic product brochure and mark for a 30-day follow-up check.', 'Enrol in the cold outreach sequence — 3 emails over 2 weeks, then archive if no reply.']
+    Hot:  ['Schedule a discovery call within 2 hours — send a Calendly link in your reply.', 'Call directly and send a personalised proposal within 24 hours.', 'Assign to a senior sales rep and initiate a product demo within the day.'],
+    Warm: ['Send a case study relevant to their industry and offer a 20-minute intro call.', 'Reply with a short video walkthrough and invite them to a weekly demo session.', 'Add to a 5-day email nurture sequence and follow up after the second email.'],
+    Cold: ['Add to the monthly newsletter and low-touch drip campaign.', 'Send a generic product brochure and mark for a 30-day follow-up.', 'Enrol in the cold outreach sequence — 3 emails over 2 weeks, then archive if no reply.']
   };
 
   const pick = arr => arr[Math.floor(Math.random() * arr.length)];
-
   return { score, tier, reason: pick(reasons[tier]), next_step: pick(steps[tier]) };
 }
 
 async function submitLead() {
-  const name  = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  const msg   = document.getElementById('f-msg').value.trim();
-  const errEl = document.getElementById('err-msg');
+  const name     = document.getElementById('f-name').value.trim();
+  const email    = document.getElementById('f-email').value.trim();
+  const company  = document.getElementById('f-company').value.trim();
+  const phone    = document.getElementById('f-phone').value.trim();
+  const budget   = document.getElementById('f-budget').value;
+  const employees= document.getElementById('f-employees').value;
+  const industry = document.getElementById('f-industry').value;
+  const msg      = document.getElementById('f-msg').value.trim();
+  const errEl    = document.getElementById('err-msg');
 
   if (!name || !email || !msg) {
     errEl.textContent = 'Please fill in name, email, and message.';
@@ -934,10 +610,10 @@ async function submitLead() {
 
   try {
     setFlow(1); await sleep(500);
-    setFlow(2); await sleep(700);
+    setFlow(2); await sleep(800);
     setFlow(3); await sleep(500);
 
-    const result = scoreLead(name, email, msg);
+    const result = scoreLead(name, email, company, budget, employees, industry, msg);
     const cfg    = tierConfig(result.tier);
 
     setFlow(4); await sleep(400);
@@ -958,21 +634,23 @@ async function submitLead() {
     document.getElementById('r-email').textContent = cfg.emailAction;
     document.getElementById('result-box').style.display = 'block';
 
-    leads.push({ name, email, score: result.score, tier: result.tier });
-    addToCRM({ name, email, score: result.score, tier: result.tier });
+    const industryLabel = document.getElementById('f-industry').options[document.getElementById('f-industry').selectedIndex]?.text || '';
+    leads.push({ name, email, company, score: result.score, tier: result.tier, industry: industryLabel });
+    addToCRM({ name, email, company, score: result.score, tier: result.tier, industry: industryLabel });
 
     btn.innerHTML = '✓ Analysis complete';
-  } catch (e) {
+  } catch(e) {
     clearFlow();
     errEl.textContent = 'Something went wrong — please try again.';
     errEl.style.display = 'block';
     btn.disabled = false;
-    btn.innerHTML = '<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Analyze lead';
+    btn.innerHTML = '<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Analyze lead';
   }
 }
 
 function resetForm() {
-  ['f-name','f-email','f-phone','f-msg'].forEach(id => document.getElementById(id).value = '');
+  ['f-name','f-email','f-company','f-phone','f-msg'].forEach(id => document.getElementById(id).value = '');
+  ['f-budget','f-employees','f-industry'].forEach(id => document.getElementById(id).selectedIndex = 0);
   document.getElementById('result-box').style.display = 'none';
   document.getElementById('err-msg').style.display = 'none';
   const btn = document.getElementById('submit-btn');
@@ -987,6 +665,5 @@ document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') submitLead();
 });
 </script>
-
 </body>
 </html>
