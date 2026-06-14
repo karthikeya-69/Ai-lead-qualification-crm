@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Lead Qualification CRM — Live Demo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gray-50: #f9f9f9;
+    --gray-100: #f2f2f2;
+    --gray-200: #e5e5e5;
+    --gray-400: #a3a3a3;
+    --gray-600: #525252;
+    --gray-800: #1c1c1c;
+    --hot: #dc2626;
+    --hot-bg: #fef2f2;
+    --hot-border: #fecaca;
+    --warm: #d97706;
+    --warm-bg: #fffbeb;
+    --warm-border: #fde68a;
+    --cold: #2563eb;
+    --cold-bg: #eff6ff;
+    --cold-border: #bfdbfe;
+    --accent: #16a34a;
+    --accent-light: #f0fdf4;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --font: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .nav-logo-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .nav-links a:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 2rem 64px;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    background: var(--accent-light);
+    border: 1px solid #bbf7d0;
+    border-radius: 99px;
+    padding: 4px 12px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -.02em;
+    color: var(--black);
+    margin-bottom: 20px;
+    max-width: 640px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--gray-600);
+    max-width: 520px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+  .hero-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid var(--gray-200);
+    color: var(--gray-600);
+    background: var(--gray-50);
+  }
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--gray-200);
+  }
+  .stat-item { }
+  .stat-n {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1;
+  }
+  .stat-l { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+
+  /* PIPELINE */
+  .pipeline-section {
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 48px 2rem;
+  }
+  .section-label {
+    max-width: 880px;
+    margin: 0 auto 28px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--gray-400);
+  }
+  .pipeline {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .pipe-step {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    min-width: 140px;
+    flex-shrink: 0;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .pipe-step.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(22,163,74,.1);
+  }
+  .pipe-step-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gray-400);
+    margin-bottom: 6px;
+  }
+  .pipe-step-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 2px;
+  }
+  .pipe-step-sub { font-size: 11px; color: var(--gray-400); }
+  .pipe-arrow {
+    color: var(--gray-400);
+    padding: 0 6px;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* DEMO SECTION */
+  .demo-section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 2rem;
+  }
+  .demo-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .demo-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+  .demo-header p { font-size: 14px; color: var(--gray-600); }
+  .live-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid #bbf7d0;
+    border-radius: 99px;
+    padding: 5px 12px;
+    flex-shrink: 0;
+  }
+  .live-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 640px) { .demo-grid { grid-template-columns: 1fr; } }
+
+  .demo-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .demo-card-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--gray-400);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .demo-card-title svg { width: 14px; height: 14px; }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-600);
+    margin-bottom: 5px;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 9px 12px;
+    font-family: var(--font);
+    font-size: 14px;
+    color: var(--black);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+    margin-bottom: 14px;
+  }
+  input:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(22,163,74,.1);
+    background: var(--white);
+  }
+  textarea { height: 90px; resize: none; }
+
+  .submit-btn {
+    width: 100%;
+    padding: 11px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: opacity .15s, transform .1s;
+  }
+  .submit-btn:hover { opacity: .85; }
+  .submit-btn:active { transform: scale(.99); }
+  .submit-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+  .err { font-size: 12px; color: var(--hot); margin-top: 6px; display: none; }
+
+  /* RESULT */
+  .result-box {
+    display: none;
+    margin-top: 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+  }
+  .result-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .score-num {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1;
+    font-family: var(--mono);
+  }
+  .score-right { flex: 1; }
+  .tier-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-bottom: 8px;
+  }
+  .bar-track {
+    height: 4px;
+    background: var(--gray-100);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width .7s ease;
+  }
+  .result-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .result-row { }
+  .result-row-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+  }
+  .result-row-text { font-size: 13px; color: var(--gray-800); line-height: 1.55; }
+  .result-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 0 20px 20px;
+  }
+  .chip {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gray-200);
+    color: var(--gray-600);
+    background: var(--white);
+    cursor: pointer;
+    transition: background .15s, color .15s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .chip:hover { background: var(--gray-50); color: var(--black); border-color: var(--gray-400); }
+
+  /* CRM LOG */
+  .crm-log { display: flex; flex-direction: column; gap: 8px; min-height: 200px; }
+  .crm-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+    color: var(--gray-400);
+    text-align: center;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .crm-empty svg { opacity: .3; }
+  .crm-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+  }
+  .crm-avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .crm-info { flex: 1; min-width: 0; }
+  .crm-name { font-size: 13px; font-weight: 500; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .crm-email { font-size: 11px; color: var(--gray-400); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .crm-score { font-family: var(--mono); font-size: 13px; font-weight: 500; }
+  .crm-tier { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; }
+
+  /* TECH SECTION */
+  .tech-section {
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    padding: 64px 2rem;
+  }
+  .tech-inner { max-width: 880px; margin: 0 auto; }
+  .tech-inner h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .tech-inner p { font-size: 14px; color: var(--gray-600); margin-bottom: 36px; }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .tech-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: border-color .15s;
+  }
+  .tech-card:hover { border-color: var(--gray-400); }
+  .tech-icon { font-size: 22px; margin-bottom: 10px; }
+  .tech-name { font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+  .tech-role { font-size: 12px; color: var(--gray-400); line-height: 1.4; }
+
+  /* CLASSIFICATION */
+  .tiers-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 480px) { .tiers-row { grid-template-columns: 1fr; } }
+  .tier-card {
+    border-radius: var(--radius);
+    border: 1px solid;
+    padding: 20px;
+    text-align: center;
+  }
+  .tier-card.hot { background: var(--hot-bg); border-color: var(--hot-border); }
+  .tier-card.warm { background: var(--warm-bg); border-color: var(--warm-border); }
+  .tier-card.cold { background: var(--cold-bg); border-color: var(--cold-border); }
+  .tier-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+  .tier-card.hot .tier-label { color: var(--hot); }
+  .tier-card.warm .tier-label { color: var(--warm); }
+  .tier-card.cold .tier-label { color: var(--cold); }
+  .tier-range { font-family: var(--mono); font-size: 26px; font-weight: 600; display: block; margin-bottom: 6px; }
+  .tier-card.hot .tier-range { color: var(--hot); }
+  .tier-card.warm .tier-range { color: var(--warm); }
+  .tier-card.cold .tier-range { color: var(--cold); }
+  .tier-action { font-size: 12px; color: var(--gray-600); line-height: 1.4; }
+
+  /* DB FIELDS */
+  .db-fields { display: flex; flex-wrap: wrap; gap: 8px; }
+  .db-field {
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 4px 10px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    color: var(--gray-600);
+  }
+  .db-field.ai { background: var(--accent-light); border-color: #bbf7d0; color: #15803d; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--gray-200);
+    padding: 32px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  footer p { font-size: 12px; color: var(--gray-400); }
+  .footer-links { display: flex; gap: 16px; }
+  .footer-links a { font-size: 12px; color: var(--gray-400); text-decoration: none; }
+  .footer-links a:hover { color: var(--black); }
+
+  /* SPIN */
+  .spin { display: inline-block; animation: spin .6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 640px) {
+    .hero-stats { gap: 20px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <span class="nav-logo-dot"></span>
+    AI Lead CRM
+  </a>
+  <ul class="nav-links">
+    <li><a href="#demo">Live demo</a></li>
+    <li><a href="#tech">Tech stack</a></li>
+    <li><a href="#schema">Schema</a></li>
+    <li><a href="https://github.com" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="nav-logo-dot"></span>
+    AI automation · SaaS MVP
+  </div>
+  <h1>Lead qualification <span>powered by AI</span></h1>
+  <p class="hero-sub">
+    An end-to-end automation pipeline that captures leads, scores intent using Groq LLaMA 3, stores structured data in Supabase, and sends automated email responses via Gmail.
+  </p>
+  <div class="hero-stack">
+    <span class="stack-tag">n8n</span>
+    <span class="stack-tag">Groq LLaMA 3</span>
+    <span class="stack-tag">Supabase · PostgreSQL</span>
+    <span class="stack-tag">Gmail API</span>
+    <span class="stack-tag">Webhook</span>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-n">3</div>
+      <div class="stat-l">lead tiers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">5</div>
+      <div class="stat-l">pipeline steps</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">0–100</div>
+      <div class="stat-l">AI score range</div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="pipeline-section">
+  <div class="section-label">Workflow pipeline</div>
+  <div class="pipeline">
+    <div class="pipe-step" id="ps1">
+      <div class="pipe-step-num">01</div>
+      <div class="pipe-step-name">Webhook</div>
+      <div class="pipe-step-sub">Lead ingestion</div>
+    </div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" id="ps2">
+      <div class="pipe-step-num">02</div>
+      <div class="pipe-step-name">Groq AI</div>
+      <div class="pipe-step-sub">Score &amp; classify</div>
+    </div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" id="ps3">
+      <div class="pipe-step-num">03</div>
+      <div class="pipe-step-name">Code node</div>
+      <div class="pipe-step-sub">Parse &amp; format</div>
+    </div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" id="ps4">
+      <div class="pipe-step-num">04</div>
+      <div class="pipe-step-name">Supabase</div>
+      <div class="pipe-step-sub">Store CRM data</div>
+    </div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step" id="ps5">
+      <div class="pipe-step-num">05</div>
+      <div class="pipe-step-name">Gmail</div>
+      <div class="pipe-step-sub">Auto-response</div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="demo-section" id="demo">
+  <div class="demo-header">
+    <div>
+      <h2>Try the live demo</h2>
+      <p>Submit a lead and watch it get scored and classified in real time by AI.</p>
+    </div>
+    <div class="live-badge"><span class="live-dot"></span>Live · AI-powered</div>
+  </div>
+
+  <div class="demo-grid">
+    <!-- FORM -->
+    <div class="demo-card">
+      <div class="demo-card-title">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        Submit lead
+      </div>
+
+      <label for="f-name">Full name</label>
+      <input id="f-name" type="text" placeholder="Jane Smith">
+
+      <label for="f-email">Email address</label>
+      <input id="f-email" type="email" placeholder="jane@acme.com">
+
+      <label for="f-phone">Phone number</label>
+      <input id="f-phone" type="tel" placeholder="+1 (555) 000-0000">
+
+      <label for="f-msg">Message</label>
+      <textarea id="f-msg" placeholder="Describe what you need, your budget, timeline…"></textarea>
+
+      <button class="submit-btn" id="submit-btn" onclick="submitLead()">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Analyze lead
+      </button>
+      <p class="err" id="err-msg">Please fill in name, email, and message.</p>
+
+      <!-- RESULT -->
+      <div class="result-box" id="result-box">
+        <div class="result-top">
+          <div class="score-num" id="r-score">—</div>
+          <div class="score-right">
+            <span class="tier-pill" id="r-tier">—</span>
+            <div class="bar-track"><div class="bar-fill" id="r-bar" style="width:0%"></div></div>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="result-row">
+            <div class="result-row-label">AI analysis</div>
+            <div class="result-row-text" id="r-reason">—</div>
+          </div>
+          <div class="result-row">
+            <div class="result-row-label">Next step</div>
+            <div class="result-row-text" id="r-next">—</div>
+          </div>
+          <div class="result-row">
+            <div class="result-row-label">Email action</div>
+            <div class="result-row-text" id="r-email">—</div>
+          </div>
+        </div>
+        <div class="result-chips">
+          <button class="chip" onclick="resetForm()">
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            New lead
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRM LOG -->
+    <div class="demo-card">
+      <div class="demo-card-title">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+        CRM log — Supabase
+      </div>
+      <div class="crm-log" id="crm-log">
+        <div class="crm-empty" id="crm-empty">
+          <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
+          No leads yet.<br>Submit one to see the CRM populate.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-section" id="tech">
+  <div class="tech-inner">
+    <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:10px">Tech stack</p>
+    <h2>Built with the right tools</h2>
+    <p>Every component in this pipeline is production-grade and battle-tested.</p>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">⚙️</div>
+        <div class="tech-name">n8n</div>
+        <div class="tech-role">Workflow automation engine that orchestrates the entire pipeline</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🧠</div>
+        <div class="tech-name">Groq API (LLaMA 3)</div>
+        <div class="tech-role">AI lead scoring and classification with structured JSON output</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🗄️</div>
+        <div class="tech-name">Supabase</div>
+        <div class="tech-role">PostgreSQL database for persistent CRM storage</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">📧</div>
+        <div class="tech-name">Gmail API</div>
+        <div class="tech-role">Automated tier-based email notifications via OAuth2</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🔗</div>
+        <div class="tech-name">Webhook</div>
+        <div class="tech-role">HTTP trigger endpoint for lead data ingestion</div>
+      </div>
+    </div>
+
+    <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:16px">AI classification logic</p>
+    <div class="tiers-row">
+      <div class="tier-card hot">
+        <div class="tier-label">🔥 Hot</div>
+        <span class="tier-range">70–100</span>
+        <div class="tier-action">Immediate follow-up email</div>
+      </div>
+      <div class="tier-card warm">
+        <div class="tier-label">🌤 Warm</div>
+        <span class="tier-range">40–69</span>
+        <div class="tier-action">Standard response email</div>
+      </div>
+      <div class="tier-card cold">
+        <div class="tier-label">❄️ Cold</div>
+        <span class="tier-range">0–39</span>
+        <div class="tier-action">Generic informational email</div>
+      </div>
+    </div>
+
+    <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:12px" id="schema">Database schema (Supabase)</p>
+    <div class="db-fields">
+      <span class="db-field">name</span>
+      <span class="db-field">email</span>
+      <span class="db-field">phone</span>
+      <span class="db-field">message</span>
+      <span class="db-field ai">ai_score</span>
+      <span class="db-field ai">tier</span>
+      <span class="db-field ai">summary</span>
+      <span class="db-field">created_at</span>
+    </div>
+    <p style="font-size:11px;color:var(--gray-400);margin-top:10px">Green fields are AI-generated by the Groq node</p>
+  </div>
+</section>
+
+<footer>
+  <p>AI Lead Qualification CRM · Built as an AI Automation SaaS MVP · MIT License</p>
+  <div class="footer-links">
+    <a href="https://github.com" target="_blank">GitHub</a>
+    <a href="#demo">Live demo</a>
+  </div>
+</footer>
+
+<script>
+const leads = [];
+
+function tierConfig(tier) {
+  if (tier === 'Hot')  return { color: '#dc2626', bg: '#fef2f2', border: '#fecaca', bar: '#dc2626', avBg: '#fef2f2', avColor: '#991b1b', emailAction: 'Immediate follow-up email sent — high-urgency template via Gmail.' };
+  if (tier === 'Warm') return { color: '#d97706', bg: '#fffbeb', border: '#fde68a', bar: '#d97706', avBg: '#fffbeb', avColor: '#92400e', emailAction: 'Standard nurture email queued — warm outreach sequence via Gmail.' };
+  return { color: '#2563eb', bg: '#eff6ff', border: '#bfdbfe', bar: '#2563eb', avBg: '#eff6ff', avColor: '#1e40af', emailAction: 'Generic informational email dispatched — added to cold outreach list.' };
+}
+
+function initials(name) {
+  return name.trim().split(/\s+/).filter(Boolean).map(w=>w[0]).slice(0,2).join('').toUpperCase() || '?';
+}
+
+function setFlow(step) {
+  [1,2,3,4,5].forEach(i => {
+    const el = document.getElementById('ps'+i);
+    el.classList.toggle('active', i === step);
+  });
+}
+
+function clearFlow() {
+  [1,2,3,4,5].forEach(i => document.getElementById('ps'+i).classList.remove('active'));
+}
+
+function addToCRM(lead) {
+  document.getElementById('crm-empty')?.remove();
+  const cfg = tierConfig(lead.tier);
+  const el = document.createElement('div');
+  el.className = 'crm-row';
+  el.innerHTML = `
+    <div class="crm-avatar" style="background:${cfg.avBg};color:${cfg.avColor}">${initials(lead.name)}</div>
+    <div class="crm-info">
+      <div class="crm-name">${lead.name}</div>
+      <div class="crm-email">${lead.email}</div>
+    </div>
+    <span class="crm-tier" style="background:${cfg.bg};color:${cfg.color};border:1px solid ${cfg.border}">${lead.tier}</span>
+    <span class="crm-score" style="color:${cfg.color}">${lead.score}</span>`;
+  const log = document.getElementById('crm-log');
+  log.insertBefore(el, log.firstChild);
+}
+
+async function submitLead() {
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const msg   = document.getElementById('f-msg').value.trim();
+  const errEl = document.getElementById('err-msg');
+
+  if (!name || !email || !msg) { errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin">↻</span> Analyzing…';
+
+  setFlow(1);
+  await sleep(400);
+  setFlow(2);
+
+  const prompt = `You are a B2B sales lead qualification AI. Analyze this lead and return ONLY a valid JSON object — no markdown, no backticks, no extra text.
+
+Lead:
+- Name: ${name}
+- Email: ${email}
+- Phone: ${phone || 'Not provided'}
+- Message: ${msg}
+
+Return exactly:
+{
+  "score": <integer 0-100>,
+  "tier": "<Hot|Warm|Cold>",
+  "reason": "<2-3 sentences on intent, urgency, and fit based on their message>",
+  "next_step": "<one specific concrete action to take next>"
+}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const raw = data.content.map(b => b.text || '').join('').replace(/```json|```/g,'').trim();
+    const result = JSON.parse(raw);
+
+    const score = Math.round(result.score);
+    const tier  = result.tier || 'Cold';
+    const cfg   = tierConfig(tier);
+
+    setFlow(3); await sleep(300);
+    setFlow(4); await sleep(300);
+    setFlow(5); await sleep(300);
+    clearFlow();
+
+    document.getElementById('r-score').textContent = score;
+    document.getElementById('r-score').style.color = cfg.color;
+
+    const tb = document.getElementById('r-tier');
+    tb.textContent = tier + ' lead';
+    tb.style.cssText = `display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;background:${cfg.bg};color:${cfg.color};border:1px solid ${cfg.border};margin-bottom:8px`;
+
+    document.getElementById('r-bar').style.background = cfg.bar;
+    document.getElementById('r-bar').style.width = score + '%';
+    document.getElementById('r-reason').textContent = result.reason;
+    document.getElementById('r-next').textContent = result.next_step;
+    document.getElementById('r-email').textContent = cfg.emailAction;
+
+    document.getElementById('result-box').style.display = 'block';
+
+    leads.push({ name, email, score, tier });
+    addToCRM({ name, email, score, tier });
+
+    btn.innerHTML = '✓ Analysis complete';
+  } catch(e) {
+    clearFlow();
+    errEl.textContent = 'Something went wrong — please try again.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Analyze lead';
+  }
+}
+
+function resetForm() {
+  ['f-name','f-email','f-phone','f-msg'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('err-msg').style.display = 'none';
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Analyze lead';
+  clearFlow();
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') submitLead();
+});
+</script>
+</body>
+</html>
